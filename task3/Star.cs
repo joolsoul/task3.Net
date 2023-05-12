@@ -2,13 +2,13 @@
 
 namespace task3;
 
-public abstract class Star : CelestialObject
+public sealed class Star : CelestialObject
 {
-    protected Star(String name, double weight, double radius, double luminosity) : base(name, weight, radius)
+    public Star(String name, double weight, double radius, double luminosity) : base(name, weight, radius)
     {
         Luminosity = luminosity;
     }
-    protected Star(String name, double weight, double radius, double luminosity,
+    public Star(String name, double weight, double radius, double luminosity,
         List<Planet> planets) : base(name, weight, radius)
     {
         Luminosity = luminosity;
@@ -16,7 +16,6 @@ public abstract class Star : CelestialObject
     }
     
     private double _luminosity;
-    private int _planetCount;
     private List<Planet> _planets = new List<Planet>();
     
     public double Luminosity
@@ -24,26 +23,26 @@ public abstract class Star : CelestialObject
         get => _luminosity; 
         set => _luminosity = value;
     }
-
-    public int PlanetCount
-    {
-        get => _planetCount;
-    }
+    
     public List<Planet> Planets 
     { 
         get => _planets; 
         set => _planets = value; 
     }
+
+    public int PlanetsCount
+    {
+        get => _planets.Count;
+    }
+    
     public void AddPlanet(Planet planet)
     {
         _planets.Add(planet);
-        _planetCount++;
     }
 
     public void RemovePlanet(Planet planet)
     {
         _planets.Remove(planet);
-        _planetCount--;
     }
 
     public override String ToString(int level)
@@ -53,11 +52,11 @@ public abstract class Star : CelestialObject
         sb.Append($"-Luminosity: {Luminosity}*10^26 W\n");
         sb.Append($"-Weight: {Weight}*10^30 kg\n");
         sb.Append($"-Radius: {Radius} km\n");
-        if (PlanetCount != 0)
+        if (Planets.Count != 0)
         {
-            var s = PlanetCount == 1
-                ? $"With {PlanetCount} planet: \n"
-                : $"With {PlanetCount} planets: \n";
+            var s = Planets.Count == 1
+                ? $"With {Planets.Count} planet: \n"
+                : $"With {Planets.Count} planets: \n";
             sb.Append(s);
             
             foreach (var planet in Planets)

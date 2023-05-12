@@ -2,19 +2,18 @@
 
 namespace task3;
 
-public abstract class Planet : CelestialObject
+public class Planet : CelestialObject
 {
-    protected Planet(string name, double weight, double radius,
+    public Planet(string name, double weight, double radius,
         Star star, double orbitRadius, double orbitalSpeed, double axisSpeed) : base(name, weight, radius)
     {
         OrbitRadius = orbitRadius;
         OrbitalSpeed = orbitalSpeed;
         AxisSpeed = axisSpeed;
         Star = star;
-        star.AddPlanet(this);
     }
     
-    protected Planet(string name, double weight, double radius,
+    public Planet(string name, double weight, double radius,
         Star star, double orbitRadius, double orbitalSpeed, double axisSpeed, 
         List<Satellite> satellites) : base(name, weight, radius)
     {
@@ -23,7 +22,6 @@ public abstract class Planet : CelestialObject
         AxisSpeed = axisSpeed;
         Satellites = satellites;
         Star = star;
-        star.AddPlanet(this);
     }
 
     private Star _star;

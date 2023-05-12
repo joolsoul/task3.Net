@@ -32,7 +32,7 @@ public class StarSystem
 
     public int getPlanetCount()
     {
-        return star.PlanetCount;
+        return star.PlanetsCount;
     }
 
     public void toString()

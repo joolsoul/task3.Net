@@ -2,9 +2,9 @@
 
 namespace task3;
 
-public abstract class Satellite : CelestialObject
+public class Satellite : CelestialObject
 {
-    protected Satellite(string name, double weight, double radius, Planet planet) : base(name, weight, radius)
+    public Satellite(string name, double weight, double radius, Planet planet) : base(name, weight, radius)
     {
         Planet = planet;
         planet.AddSatellite(this);
